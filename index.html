@@ -1,13 +1,10 @@
-<!-- Tag soup by Libertifer. Fuck Unity. Long live ENIGMA. -->
 <html>
-	<head>
-		<title>Unity Runtime Fee Calculator</title>
-		<meta name="author" content="Libertifer">
-		<meta name="description" content="Calculates how much do you owe Unity for making a game with their engine.">
-  	<meta name="keywords" content="Unity, Runtime, Fee">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
   <body>
+  	<audio id="audio1" src="sounds/01.ogg"></audio>
+  	<audio id="audio2" src="sounds/02.ogg"></audio>
+  	<audio id="audio3" src="sounds/03.ogg"></audio>
+  	<audio id="audio4" src="sounds/04.ogg"></audio>
+  	<audio id="audio5" src="sounds/05.ogg"></audio>
     <h1>Unity Runtime Fee Calculator</h1>
     <p>Since Unity really wanna kill themselves, here it is a calculator for the fee.</p>
     <p>If you don't now about the brand new Unity Runtime Fee <a href="https://blog.unity.com/news/plan-pricing-and-packaging-updates" target="_blank">check out their blog here</a>.</p>
@@ -42,9 +39,9 @@
     	<option value="true">Yes</option>
     	<option value="false">No</option>
     </select><br>
-    <label for="year-revenue">How much US dollars has been your game revenue during the last 12 months?</label>
+    <label for="year-revenue">How much US dollars was your game revenue during the last 12 months?</label>
     <input id="year-revenue" type="number"><br>
-    <label for="installs">How many copies of the game have you sold?</label>
+    <label for="installs">How many copies did you sell?</label>
     <input id="installs" type="number"><br>
     <button onclick="calculator()">Check</button>
     <p id="result"></p>
@@ -113,6 +110,28 @@
 	  				document.getElementById('result').innerHTML = "ERROR: invalid data.";
     				break
 				}
+				callSound(total,license,standartFee,yearRevenue,installs)
+    	}
+    	
+    	function callSound(total,license,standartFee,yearRevenue,installs) {
+    		if (license === "3") {
+    			if (installs > 200000 && yearRevenue > 200000 && installs <= 1000000) {
+    				document.getElementById('audio1').play();
+    			}else if (yearRevenue < 200000) {
+    				document.getElementById('audio2').play();
+    			}
+    		}else if (license === "2"){
+    			if (installs > 1000000) {
+    				document.getElementById('audio3').play();
+    			}
+    		}else if (license === "1"){
+    			if (installs > 200000 && yearRevenue > 200000) {
+    				document.getElementById('audio4').play();
+    			}
+    			if (installs > 200000 && yearRevenue < 200000) {
+    				document.getElementById('audio5').play();
+    			}
+    		}
     	}
     </script>
   </body>
