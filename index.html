@@ -3,7 +3,7 @@
     <h1>Unity Runtime Fee Calculator</h1>
     <p>Since Unity really wanna kill themselves, here it is a calculator for the fee.</p>
     <p>If you don't now about the brand new Unity Runtime Fee <a href="https://blog.unity.com/news/plan-pricing-and-packaging-updates" target="_blank">check out their blog here</a>.</p>
-    <select>
+    <select id="license">
     	<option value="0" selected disabled>What license do you own?</option>
     	<option value="1">Personal/Plus</option>
     	<option value="2">Pro</option>
@@ -27,11 +27,85 @@
     	<span title="Sverige">🇸🇪</span>
     	<span title="Schweiz/Suisse/Svizzera/Svizra">🇨🇭</span>
     	<span title="United Kingdom/Unitit Kinrick/Rìoghachd Aonaichte/Teyrnas Unedig">🇬🇧</span>
-    	<span title="United States">🇺🇸</span></p>
-    <select>
+    	<span title="United States">🇺🇸</span>
+		</p>
+    <select id="standart-fee">
     	<option value="0" selected disabled>Is your country flag above?</option>
     	<option value="true">Yes</option>
     	<option value="false">No</option>
-    </select>
+    </select><br>
+    <label for="year-revenue">How much US dollars was your game revenue during the last 12 months?</label>
+    <input id="year-revenue" type="number"><br>
+    <label for="installs">How many copies did you sell?</label>
+    <input id="installs" type="number"><br>
+    <button onclick="calculator()">Check</button>
+    <p id="result"></p>
+    <script>
+    	function calculator() {
+    		let total;
+    		let license = document.getElementById('license').value;
+    		let standartFee = document.getElementById('standart-fee').value;
+    		let yearRevenue = Number.parseInt(document.getElementById('year-revenue').value);
+    		let installs = Number.parseInt(document.getElementById('installs').value);
+    		
+    		switch (license) {
+    			case "1": 
+		  			if (installs > 200000 && yearRevenue > 200000) {
+		  				if (standartFee === "true") {
+		  					total = (installs-200000)*.2;
+		  				}else{
+		  					total = (installs-200000)*.02;
+		  				}
+		  				document.getElementById('result').innerHTML = `You owe ${total.toLocaleString('en-US')} USD to Unity.`;
+		  			}else{
+		  				document.getElementById('result').innerHTML = `You owe 0 USD to Unity.`;
+		  			}
+		  			break;
+	  			case "2":
+		  			if (installs > 1000000 && yearRevenue > 1000000) {
+		  				if (standartFee === "true") {
+		  					if (installs > 2000000) {
+		  						total = (installs-1000000)*.02;
+	  						}else if (installs > 1500000){
+		  						total = (installs-1000000)*.03;
+	  						}else if (installs > 1100000){
+		  						total = (installs-1000000)*.075;
+	  						}else{
+		  						total = (installs-1000000)*.15;
+	  						}
+		  				}else{
+		  					total = (installs-1000000)*.01;
+		  				}
+		  				document.getElementById('result').innerHTML = `You owe ${total.toLocaleString('en-US')} USD to Unity.`;
+		  			}else{
+		  				document.getElementById('result').innerHTML = `You owe 0 USD to Unity.`;
+		  			}
+		  			break;
+	  			case "3":
+		  			if (installs > 1000000 && yearRevenue > 1000000) {
+		  				if (standartFee === "true") {
+		  					if (installs > 2000000) {
+		  						total = (installs-1000000)*.01;
+	  						}else if (installs > 1500000){
+		  						total = (installs-1000000)*.02;
+	  						}else if (installs > 1100000){
+		  						total = (installs-1000000)*.06;
+	  						}else{
+		  						total = (installs-1000000)*.125;
+	  						}
+		  				}else{
+		  					total = (installs-1000000)*.005;
+		  				}
+		  				document.getElementById('result').innerHTML = `You owe ${total.toLocaleString('en-US')} USD to Unity.`;
+		  			}else{
+		  				document.getElementById('result').innerHTML = `You owe 0 USD to Unity.`;
+		  			}
+		  			break;
+	  			default:
+	  				document.getElementById('result').innerHTML = "ERROR: invalid data.";
+    				break
+				}
+    	}
+    </script>
   </body>
 </html>
