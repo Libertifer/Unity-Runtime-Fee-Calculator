@@ -7,7 +7,16 @@
   	<meta name="keywords" content="Unity, Runtime, Fee">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style>
+			body {
+				position: absolute;
+				padding: 32px;
+				left: 25vw;
+				width: 50vw;
+				text-align: center;
+				top: 15vh;
+			}
 			body, input, button, select {
+				border: solid 1px;
 				background-color: #111;
 				color: #eee;
 			}
@@ -54,9 +63,9 @@
     	<option value="true">Yes</option>
     	<option value="false">No</option>
     </select><br>
-    <label for="year-revenue">How much US dollars has been your game revenue during the last 12 months?</label>
-    <input id="year-revenue" type="number"><br>
-    <label for="installs">How many copies have you sold?</label>
+    <label for="year-revenue">How much US dollars has been your game revenue during the last 12 months?</label><brA
+    <input id="year-revenue" type="number"><br><br>
+    <label for="installs">How many copies have you sold?</label><br>
     <input id="installs" type="number"><br>
     <button onclick="calculator()">Check</button>
     <p id="result"></p>
